@@ -1,0 +1,76 @@
+{
+  "version": 2,
+  "builds": [
+  	{
+	   "src": "./index.js",
+	   "use": "@now/node-server"
+    }
+ ],
+  "routes": [
+    {
+      "src": "/api/v1/auth/signin",
+      "dest": "/index.js",
+      "methods": ["POST"] 
+    },
+    {
+      "src": "/api/v1/auth/create-user",
+      "dest": "/index.js",
+      "methods": ["POST"]
+    },
+    {
+      "src": "/api/v1/articles",
+      "dest": "/index.js",
+      "methods": ["GET", "POST"]
+    },
+    {
+      "src": "/api/v1/articles/(?<id>[^/]+)",
+      "dest": "/index.js",
+      "methods": ["GET", "PATCH", "DELETE"]
+    },
+    {
+      "src": "/api/v1/articles/(?<id>[^/]+)/comment",
+      "dest": "/index.js",
+      "methods": ["POST"]
+    },
+    {
+      "src": "/api/v1/category",
+      "dest": "/index.js",
+      "methods": ["GET", "POST"]
+    },
+    {
+      "src": "/api/v1/category/(?<id>[^/]+)",
+      "dest": "/index.js",
+      "methods": ["GET", "PATCH", "DELETE"]
+    },
+    {
+      "src": "/api/v1/gifs",
+      "dest": "/index.js",
+      "methods": ["GET", "POST"]
+    },
+    {
+      "src": "/api/v1/gifs/(?<id>[^/]+)",
+      "dest": "/index.js",
+      "methods": ["GET", "DELETE"]
+    },
+    {
+      "src": "/api/v1/gifs/(?<id>[^/]+)/comment",
+      "dest": "/index.js",
+      "methods": ["POST"]
+    },
+    {
+      "src": "/api/v1/comment/(?<id>[^/]+)",
+      "dest": "/index.js",
+      "methods": ["DELETE"]
+    },
+    {
+      "src": "/api/v1/comment/(?<id>[^/]+)/flag",
+      "dest": "/index.js",
+      "methods": ["PATCH"]
+    },
+    {
+      "src": "/api/v1/feed",
+      "dest": "/index.js",
+      "methods": ["GET"]
+    }
+  ]
+}

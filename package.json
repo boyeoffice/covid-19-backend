@@ -1,0 +1,54 @@
+{
+  "name": "covid-19-backend",
+  "version": "1.0.0",
+  "description": "Teamwork is an ​ internal social network for employees of an organization ",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --recursive --exit --timeout 120000",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boyeoffice/Teamwork-backend.git"
+  },
+  "keywords": [
+    "andela",
+    "devc",
+    "facebook",
+    "nodejs",
+    "express"
+  ],
+  "author": "Olakunle Boye",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/boyeoffice/Teamwork-backend/issues"
+  },
+  "homepage": "https://github.com/boyeoffice/Teamwork-backend#readme",
+  "dependencies": {
+    "@hapi/joi": "^16.1.7",
+    "bcrypt": "^3.0.6",
+    "chai": "^4.2.0",
+    "cloudinary": "^1.17.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "express-fileupload": "^1.1.6-alpha.6",
+    "jsonwebtoken": "^8.5.1",
+    "mocha": "^6.2.2",
+    "morgan": "^1.9.1",
+    "pg": "^7.12.1",
+    "supertest": "^4.0.2",
+    "validatorjs": "^3.17.1"
+  },
+  "devDependencies": {
+    "coveralls": "^3.0.7",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "jest": "^24.9.0",
+    "nyc": "^14.1.1"
+  }
+}

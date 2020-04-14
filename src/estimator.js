@@ -8,13 +8,13 @@ const periodEstimator = (period, time) => {
       return time;
   }
 };
-const estimateCurrentlyInfected = ({ data, impact, severeImpact }) => {
+exports.estimateCurrentlyInfected = ({ data, impact, severeImpact }) => {
   impact.currentlyInfected = Math.trunc(data.reportedCases * 10);
   severeImpact.currentlyInfected = Math.trunc(data.reportedCases * 50);
   return { impact, severeImpact };
 };
 
-const estimateProjectedInfections = ({ data, impact, severeImpact }) => {
+exports.estimateProjectedInfections = ({ data, impact, severeImpact }) => {
   impact.infectionsByRequestedTime = Math.trunc(impact.currentlyInfected
     * (2 ** (Math.trunc(periodEstimator(data.periodType, data.timeToElapse) / 3))));
   severeImpact.infectionsByRequestedTime = Math.trunc(severeImpact.currentlyInfected
@@ -22,14 +22,14 @@ const estimateProjectedInfections = ({ data, impact, severeImpact }) => {
   return { impact, severeImpact };
 };
 
-const estimateSevereCases = ({ impact, severeImpact }) => {
+exports.estimateSevereCases = ({ impact, severeImpact }) => {
   impact.severeCasesByRequestedTime = Math.trunc(impact.infectionsByRequestedTime * 0.15);
   severeImpact.severeCasesByRequestedTime = Math.trunc(
     severeImpact.infectionsByRequestedTime * 0.15
   );
   return { impact, severeImpact };
 };
-const estimateBedSpaceAvailability = ({ data, impact, severeImpact }) => {
+exports.estimateBedSpaceAvailability = ({ data, impact, severeImpact }) => {
   impact.hospitalBedsByRequestedTime = Math.trunc(
     (0.35 * data.totalHospitalBeds) - impact.severeCasesByRequestedTime
   );
@@ -39,21 +39,21 @@ const estimateBedSpaceAvailability = ({ data, impact, severeImpact }) => {
   return { impact, severeImpact };
 };
 
-const estimateCasesForICU = ({ impact, severeImpact }) => {
+exports.estimateCasesForICU = ({ impact, severeImpact }) => {
   impact.casesForICUByRequestedTime = Math.trunc(impact.infectionsByRequestedTime * 0.05);
   severeImpact.casesForICUByRequestedTime = Math.trunc(
     severeImpact.infectionsByRequestedTime * 0.05
   );
   return { impact, severeImpact };
 };
-const estimateCasesForVentilators = ({ impact, severeImpact }) => {
+exports.estimateCasesForVentilators = ({ impact, severeImpact }) => {
   impact.casesForVentilatorsByRequestedTime = Math.trunc(impact.infectionsByRequestedTime * 0.02);
   severeImpact.casesForVentilatorsByRequestedTime = Math.trunc(
     severeImpact.infectionsByRequestedTime * 0.02
   );
   return { impact, severeImpact };
 };
-const estimateDollarInFlight = ({ data, impact, severeImpact }) => {
+exports.estimateDollarInFlight = ({ data, impact, severeImpact }) => {
   impact.dollarsInFlight = Math.trunc((impact.infectionsByRequestedTime
       * data.region.avgDailyIncomePopulation * data.region.avgDailyIncomeInUSD)
       / Math.trunc(periodEstimator(data.periodType, data.timeToElapse)));
@@ -63,7 +63,7 @@ const estimateDollarInFlight = ({ data, impact, severeImpact }) => {
   return { impact, severeImpact };
 };
 
-const covid19ImpactEstimator = (data) => {
+/** const covid19ImpactEstimator = (data) => {
   const estimator = ({ impact, severeImpact }) => {
     // challenge 1
     estimateCurrentlyInfected({ data, impact, severeImpact });
@@ -84,4 +84,4 @@ const covid19ImpactEstimator = (data) => {
   });
 };
 
-export default covid19ImpactEstimator;
+export default covid19ImpactEstimator; */

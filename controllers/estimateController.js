@@ -1,15 +1,37 @@
-// challenge 1
-const currentlyInfected = ({ data, impact, severeImpact }) => {
-  impact.currentlyInfected = (data.reportedCases * 1) * 10;
-  severeImpact.currentlyInfected = (data.reportedCases * 1) * 50;
-  return { impact, severeImpact };
-};
+const estimator = require('../src/estimator');
 
-exports.estimator = async (req, res) => {
-  try {
-    const result = await estimateCalculator(req.body);
-    return res.json(result);
-  } catch (err) {
-    return res.status(400).json(err);
-  }
+exports.estimatorJson = (req, res) => {
+  const chain = ({ data, impact, severeImpact }) => {
+    estimator.estimateCurrentlyInfected({ data, impact, severeImpact });
+  };
+  const {
+    name,
+    avgDailyIncomeInUSD,
+    avgDailyIncomePopulation,
+    avgAge,
+    periodType,
+    timeToElapse,
+    reportedCases,
+    totalHospitalBeds,
+    population
+  } = req.body;
+  const data = {
+    data: {
+      region: {
+        name,
+        avgDailyIncomeInUSD,
+        avgDailyIncomePopulation,
+        avgAge
+      },
+      periodType,
+      timeToElapse,
+      reportedCases,
+      totalHospitalBeds,
+      population
+    },
+    impact: {},
+    severeImpact: {}
+  };
+  console.log(population);
+  res.json(chain(data));
 };

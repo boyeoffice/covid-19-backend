@@ -5,5 +5,12 @@
        "src": "./index.js",
        "use": "@now/node-server"
       }
+  ],
+  "routes": [
+    {
+      "src": "/api/v1/on-covid-19",
+      "dest": "/index.js",
+      "methods": ["POST"] 
+    },
   ]
 }
